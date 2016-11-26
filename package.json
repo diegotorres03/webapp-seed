@@ -1,0 +1,24 @@
+{
+  "name": "webapp-seed",
+  "version": "0.0.0",
+  "description": "base for web applications using mediator",
+  "main": "app/indes.js",
+  "scripts": {
+    "test": "test",
+    "start": "webpack-dev-server",
+    "lint": "eslint app/**/**.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegotorres03/webapp-seed.git"
+  },
+  "author": "Diego Torres",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diegotorres03/webapp-seed/issues"
+  },
+  "homepage": "https://github.com/diegotorres03/webapp-seed#readme",
+  "devDependencies": {
+    "webpack-dev-server": "^1.16.2"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "webapp-seed",
+  "description": "base for web applications using mediator",
+  "main": "indes.js",
+  "authors": [
+    "Diego Torres"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/diegotorres03/webapp-seed",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "webcomponentsjs": "^0.7.23"
+  }
+}
