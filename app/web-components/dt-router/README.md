@@ -61,7 +61,7 @@ If an element does not contains the data-path attribute will not be hided when t
 I see the potential of the JS frameworks, the handle routing, templating and so on, but is also good to see
 a more standar way to do the same, without relying on heavy libraries.
 
-Web components are here to stay and the are standar, so lest play with them =D.
+Web components are here to stay and they are standar, so let's play with them =D.
 
 ## Installation
 
@@ -86,8 +86,6 @@ yarn add webcomponentsjs
 ```
 
 ## API Reference
-
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
 
 
 ## Contributors

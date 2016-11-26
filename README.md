@@ -9,7 +9,7 @@ With the overwhelming amount of tools, libraries and frameworks is good from tim
 
 Nowadays we have a lot of tools built in Javascrip and the browsers, so... why not take advantage of that?
 
-This project is a way to explore the proces of build a Single Web Application using Vanilla JS.
+This project is a way to explore the process of build a Single Web Application using Vanilla JS.
 
 I'm not saying the use of JS libraries or frameworks is Wrong (I love them).
 
