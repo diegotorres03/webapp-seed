@@ -27,7 +27,6 @@
     init() {
       this._id = idNum
       idNum += 1
-      console.log(`${componentName} #${this._id} created`)
     }
 
     /**
@@ -37,7 +36,6 @@
      */
     connectedCallback() {
       this.addComponentContent()
-      console.log(`${componentName} # ${this._id} added`)
       let sections = this.children
       handleHashChange(sections)
       window.addEventListener('hashchange', () => handleHashChange(sections))
@@ -53,23 +51,13 @@
      * If the content is already inside it won't be added again.
      */
     addComponentContent() {
-      console.log(`${componentName} added to the DOM`)
     }
 
-
-
-    /**
-     * any method
-     */
-    anyMethod() {
-      console.log(`anuMethod`)
-    }
 
     /**
      * Called when the element is removed from a document
      */
     disconnectedCallback() {
-      console.log('disconnectedCallback called')
     }
 
     /** For custom elements V0 compatibility */
@@ -93,11 +81,11 @@
   } // EoC
 
   if (window.customElements) {
-    console.log(`using customElements`)
+    // console.log(`using customElements`)
     window.customElements.define(componentName, DtRouter)
   }
   else {
-    console.log(`using registerElement`)
+    // console.log(`using registerElement`)
     document.registerElement(componentName, DtRouter)
   }
 

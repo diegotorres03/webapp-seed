@@ -24,10 +24,12 @@
 			// event emmiter and handler
 			emit,
 			on,
+			removeListener,
 
 			// one response to multiple
 			ask,
 			answer,
+			removeAnswer,
 
 			// http
 			http: Object.freeze({
@@ -78,6 +80,19 @@
 		}
 
 		/**
+		 * This remove the function from this particular event
+		 * @param {String} eventName - id to the event listener
+		 * @param {Function} callback - logic to be triggered when
+		 *  the event is emited
+		 */
+		function removeListener(eventName, callback) {
+			// console.info(`registering listener for ${eventName}`)
+			if (eventList.has(eventName)) {
+				eventList.get(eventName).delete(callback)
+			}
+		}
+
+		/**
 		 * Ask for an spesific resource or action and return the response
 		 * @param {String} question - string to identify the question
 		 * @param {Object} data - extra data to be procesed
@@ -106,11 +121,13 @@
 			return true
 		}
 
+		function removeAnswer(){}
+
 		/** Wraper to http.post */
 		function httpPost(path, data) {
 			let url = httpUrl + path
-			return request('POST', url)
 			console.log(path, data)
+			return request('POST', url)
 		}
 
 		/** Wraper to http.put */

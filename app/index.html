@@ -5,6 +5,7 @@
   <title></title>
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <link id="dt-router-import" rel="import" href="web-components/dt-router/component.html" />
+  <link id="dt-router-import" rel="import" href="web-components/dt-for-of/component.html" />
 
 </head>
 
@@ -17,6 +18,37 @@
     <a href="#/page2">page2</a>
     <a href="#/page3">page3</a>
   </nav>
+
+  <ul>
+
+    <dt-for-of data-name="listItem" id="for2">
+      <li data-content="listItem"></li>
+    </dt-for-of>
+  </ul>
+
+  <dt-for-of data-name="item" id="for1">
+    <!-- the internal content should be repeted -->
+    <div data-content="item.property1.property11">
+      <h1 data-content="item.property1.property11"></h1>
+      <div>
+        <h2 data-content="item.property1.property12"></h2>
+      </div>
+    </div>
+    <h3 data-content="item.property2"></h3>
+    <hr>
+  </dt-for-of>
+
+
+  <script>
+    let for1 = document.querySelector("#for1")
+    for1.setData([
+      {property1: {property11: 'prop111', property12: 'prop112'}, property2: 'prop12'},
+      {property1: {property11: 'prop211', property12: 'prop212'}, property2: 'prop22'}
+    ])
+    let for2 = document.querySelector("#for2")
+    for2.setData(["item1", "item2", "item3", "item4"])
+    // for2.refresh()
+  </script>
 
   <!-- dt-router read the url and show the correspondent section -->
   <dt-router>
@@ -35,22 +67,7 @@
   </dt-router>
 
   <a href="#/page2/param1/param2">page 2 with params</a>
-  
-  <dt-router>
-    <div data-path="home">
-      <h1>on DIV 2 -> Home</h1>
-    </div>
-    <div data-path="page1">
-      <h1>on DIV 2 -> Page 1</h1>
-    </div>
-    <div data-path="page2">
-      <h1>on DIV 2 -> Page 2</h1>
-    </div>
-    <div data-path="page3">
-      <h1>on DIV 2 -> Page 3</h1>
-    </div>
-  </dt-router>
-  
+
   <dt-router>
     <h1>Menu</h1>
     <ol data-path="home">

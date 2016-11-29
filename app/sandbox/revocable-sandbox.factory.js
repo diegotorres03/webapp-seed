@@ -11,6 +11,9 @@
 
   function revocableSandboxFactory(sandboxReference) {
 
+    const eventList = new Map()
+    const askListeners = new Map()
+
     let sandbox = sandboxReference
 
     const revocableSandbox = {
@@ -18,16 +21,18 @@
 
       emit,
       on,
+      removeListener,
 
       ask,
       answer,
+      removeAnswer,
 
       http: {
         get,
         post,
         put,
         delete: del
-    },
+      },
 
       io: {
         emit,
@@ -41,54 +46,71 @@
      * Revoke the current access to the main sandbox
      * this disable the comunication of the module
      */
-    function revoke(){
+    function revoke() {
+      // remove all callbacks from listeners
+      eventList.forEach((events, eventName) => {
+        events.forEach(event => sandbox.removeListener(eventName, event))
+      })
+      eventList.clear()      
+
+      // remove all the answers
+      askListeners.forEach((event, question) => sandbox.removeAnswer(question, event))
+      askListeners.clear()
+
       sandbox = undefined
     }
 
+
     function emit(...data) {
-      if(sandbox)
+      if (sandbox)
         return sandbox.emit(...data)
       else return undefined
     }
 
-    function on(...data) {
-      if(sandbox)
-        return sandbox.on(...data)
+    function on(eventName, callback) {
+      if (!eventList.has(eventName)) eventList.set(eventName, new Set())
+      eventList.get(eventName).add(callback)
+
+      if (sandbox) return sandbox.on(eventName, callback)
       else return undefined
     }
 
+    function removeListener() { }
+
     function ask(...data) {
-      if(sandbox)
+      if (sandbox)
         return sandbox.ask(...data)
       else return undefined
     }
 
     function answer(...data) {
-      if(sandbox)
+      if (sandbox)
         return sandbox.answer(...data)
       else return undefined
     }
 
+    function removeAnswer() { }
+
     function get(...data) {
-      if(sandbox)
+      if (sandbox)
         return sandbox.http.get(...data)
       else return undefined
     }
 
     function post(...data) {
-      if(sandbox)
+      if (sandbox)
         return sandbox.http.post(...data)
       else return undefined
     }
 
     function put(...data) {
-      if(sandbox)
+      if (sandbox)
         return sandbox.http.put(...data)
       else return undefined
     }
 
     function del(...data) {
-      if(sandbox)
+      if (sandbox)
         return sandbox.http.delete(...data)
       else return undefined
     }
