@@ -30,20 +30,22 @@ Then add the **data-content** to the inner tags that you want to displey content
 
 The tags that has the data-content attibute and has no internal tags will be populated with the value of the iretation.
 
-To set the array to be repeted just call the method setData() og the dt-for-of elememt.
+To set the array to be repeted just call the method setData() of the dt-for-of elememt.
 
 ```js
 
-  let for2 = document.querySelector("#for2")
-  for2.setData(["item1", "item2", "item3", "item4"])
+  let for1 = document.querySelector("#for1")
+  for1.setData(["item1", "item2", "item3", "item4"])
 
 ```
 
-This will produce the next output, the setData method refresh the component and it will be render again.
+The setData method refresh the component and it will be render again.
 
 you can stop this behavior by passing as the second argument a false setData(data, false)
 
 and then call the refresh() method to populate it.
+
+This will produce the next output.
 
 ```html
 
@@ -63,10 +65,11 @@ and then call the refresh() method to populate it.
 **NOTE:** you can loop over an array of objects, and in the data-content spesify the path.
 
 ```html
-<dt-for-of data-name="user" id="for1">
+<dt-for-of data-name="user" id="for2">
     <!-- the internal content should be repeted -->
-    <div data-content="user.name.first">
+    <div>
       <h1 data-content="item.name.last"></h1>
+      <h2 data-content="user.name.first"></h2>
       <div>
         <h2 data-content="item.email"></h2>
       </div>
@@ -76,8 +79,8 @@ and then call the refresh() method to populate it.
 ```
 
 ```js
-let for1 = document.querySelector("#for1")
-    for1.setData([
+let for2 = document.querySelector("#for2")
+    for2.setData([
       {name: {first: 'first', last: 'user'}, email: 'fistuser@email.com'},
       {name: {first: 'secont', last: 'user'}, email: 'seconduser@email.com'}
     ])
