@@ -45,7 +45,10 @@ const app = (function () {
    */
   function init() {
     sandbox = sandboxFactory()
-    if(sandbox) return true
+    if(sandbox) {
+      initAllModules()
+      return true
+    }
     else return false
     // initAllModules()
   }
@@ -115,24 +118,31 @@ const app = (function () {
    */
   function initModule(moduleName) {
     if (moduleList.has(moduleName)) {
+      console.info(`initializing ${moduleName}`)
       let revocableSandbox = revocableSandboxFactory(sandbox)
-      let moduleFactory = moduleList.get(moduleName)
+      let moduleiInstance = moduleList.get(moduleName)
       sandboxList.set(moduleName, revocableSandbox)
-      let moduleInstance = moduleFactory(revocableSandbox)
+      let moduleInstance = moduleiInstance.init(revocableSandbox)
       moduleInstanceList.set('moduleName', moduleInstance)
       return true
     }
-    else return false
+    else {
+      console.ingfo(`not initializing ${moduleName}`)      
+      return false
+    }
   }
 
   /**
    * Init all the modules in the moduleList
    */
   function initAllModules() {
-    moduleList.keys(moduleName => {
+    console.log(moduleList)
+    moduleList.forEach((moduleInstance, moduleName) => {
       console.info(`initializing ${moduleName}!`)
       initModule(moduleName)
     })
+    // moduleList.keys(moduleName => {
+    // })
   }
 
 

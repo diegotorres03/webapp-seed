@@ -81,12 +81,19 @@
      */
     detachedCallback() { this.disconnectedCallback() }
 
+
+    static get observedAttributes() {
+      return ['for', 'of']
+    }
     /**
      * Called when an attribute is changed, appended, removed, or replaced on the element.
      * Only called for observed attributes.
      */
     attributeChangedCallback(attributeName, oldValue, newValue, namespace) {
       console.log(`attributeChangedCallback ${attributeName} ${oldValue} ${newValue} ${namespace}`)
+      this.list = newValue.split(',')
+      console.log(this.list)
+      this.refresh()
     }
 
     /**

@@ -3,6 +3,7 @@
   window.addEventListener('WebComponentsReady', function (event) {
     // imports are loaded and elements have been registered
     console.log('Components are ready');
+    console.log(app.init())
   })
 
   window.addEventListener('load', event => {

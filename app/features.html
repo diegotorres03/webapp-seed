@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Detecting Features</title>
+  <style>
+    .detected {
+      color: green;
+    }
+    
+    .not-detected {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <ol id="features">
+  </ol>
+
+  <script>
+    let ol = document.getElementById("features")
+    let isDetected = false
+    isDetected = ('getUserMedia' in navigator.mediaDevices)? true : false
+    add('navigator.mediaDevices.getUserMedia', isDetected)
+
+    isDetected = ('applicationCache' in window)? true : false
+    add('window.applicationCache', isDetected)
+    
+    isDetected = ('ServiceWorker' in window)? true : false
+    add('window.ServiceWorker', isDetected)
+    
+    isDetected = ('registerElement' in document)? true : false
+    add('document.registerElement', isDetected)
+
+    
+    isDetected = ('customElements' in window)? true : false
+    add('window.customElements', isDetected)
+    
+    isDetected = ('import' in document.createElement('link'))? true : false
+    add('document.createElement(\'link\').import', isDetected)
+
+    isDetected = (document.createElement('template') !== undefined)? true : false
+    add('template tag', isDetected)
+
+    isDetected = ('createShadowRoot' in document.body)? true : false
+    add('document.body.createShadowRoot', isDetected)
+
+    // isDetected = ('import' in document)? true : false
+    // add('import', isDetected)
+
+
+
+
+    function add(featureName, isDetected){
+      let li = document.createElement('li')
+      li.textContent = featureName
+      if(isDetected){
+        li.classList.add('detected')
+      } else {
+        li.classList.add('not-detected')        
+      }
+      ol.appendChild(li)
+      return
+    }
+  </script>
+</body>
+
+</html>

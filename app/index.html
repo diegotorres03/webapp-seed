@@ -3,9 +3,13 @@
 
 <head>
   <title></title>
+  <script src="app.js"></script>
+  <script src="sandbox/sandbox.factory.js"></script>
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <link id="dt-router-import" rel="import" href="web-components/dt-router/component.html" />
   <link id="dt-router-import" rel="import" href="web-components/dt-for-of/component.html" />
+  <link id="dt-notification-import" rel="import" href="web-components/dt-notification/component.html" />
+  <link rel="import" href="modules/users/web-components/dt-user-item/component.html" />
 
 </head>
 
@@ -14,83 +18,35 @@
   <!-- display the dt-view according to the path ex #home -->
   <nav>
     <a href="#/home">home</a>
-    <a href="#/page1">page1</a>
-    <a href="#/page2">page2</a>
+    <a href="#/users">users</a>
+    <a href="#/accounts">accounts</a>
     <a href="#/page3">page3</a>
   </nav>
-
-  <ul>
-
-    <dt-for-of data-name="listItem" id="for2">
-      <li data-content="listItem"></li>
-    </dt-for-of>
-  </ul>
-
-  <dt-for-of data-name="item" id="for1">
-    <!-- the internal content should be repeted -->
-    <div data-content="item.property1.property11">
-      <h1 data-content="item.property1.property11"></h1>
-      <div>
-        <h2 data-content="item.property1.property12"></h2>
-      </div>
-    </div>
-    <h3 data-content="item.property2"></h3>
-    <hr>
-  </dt-for-of>
-
-
-  <script>
-    let for1 = document.querySelector("#for1")
-    for1.setData([
-      {property1: {property11: 'prop111', property12: 'prop112'}, property2: 'prop12'},
-      {property1: {property11: 'prop211', property12: 'prop212'}, property2: 'prop22'}
-    ])
-    let for2 = document.querySelector("#for2")
-    for2.setData(["item1", "item2", "item3", "item4"])
-    // for2.refresh()
-  </script>
+  
 
   <!-- dt-router read the url and show the correspondent section -->
   <dt-router>
     <section data-path="home">
       <h1>Home</h1>
     </section>
-    <section data-path="page1">
-      <h1>Page 1</h1>
+    <section data-path="users">
+      <h1>Users</h1>
+      <button>create users</button>
+      <ol>
+        <li><dt-user-item data-id="" data-name="Diego Torres" data-email="diegotorres0303@gmail.com"></dt-user-item></li>
+      </ol>
     </section>
-    <section data-path="page2">
-      <h1>Page 2</h1>
+    <section data-path="accounts">
+      <h1>Accounts</h1>
     </section>
     <section data-path="page3">
       <h1>Page 3</h1>
     </section>
   </dt-router>
 
-  <a href="#/page2/param1/param2">page 2 with params</a>
 
-  <dt-router>
-    <h1>Menu</h1>
-    <ol data-path="home">
-      <li>Router 2 -> Home</li>
-      <li>Router 2 -> Home</li>
-    </ol>
-    <ol data-path="page1">
-      <li>Router 2 -> Page 1</li>
-      <li>Router 2 -> Page 1</li>
-    </ol>
-    <ol data-path="page2">
-      <li>Router 2 -> Page 2</li>
-      <li>Router 2 -> Page 2</li>
-    </ol>
-    <ol data-path="page3">
-      <li>Router 2 -> Page 3</li>
-      <li>Router 2 -> Page 3</li>
-    </ol>
-  </dt-router>
+  <dt-notification></dt-notification>
 
-
-  <script src="app.js"></script>
-  <script src="sandbox/sandbox.factory.js"></script>
   <script src="index.js"></script>
   <script src="sandbox/revocable-sandbox.factory.js"></script>
   <script>
