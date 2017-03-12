@@ -6,15 +6,16 @@
   <script src="app.js"></script>
   <script src="sandbox/sandbox.factory.js"></script>
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="web-components/dt-form/dt-form.component.html" />
   <link id="dt-router-import" rel="import" href="web-components/dt-router/component.html" />
   <link id="dt-router-import" rel="import" href="web-components/dt-for-of/component.html" />
   <link id="dt-notification-import" rel="import" href="web-components/dt-notification/component.html" />
+  <link rel="import" href="web-components/dt-app-menu/app-menu.component.html" />
   <link rel="import" href="modules/users/web-components/dt-user-item/component.html" />
-
 </head>
 
 <body>
-
+  <!--<dt-app-menu></dt-app-menu>-->
   <!-- display the dt-view according to the path ex #home -->
   <nav>
     <a href="#/home">home</a>
@@ -22,8 +23,158 @@
     <a href="#/accounts">accounts</a>
     <a href="#/page3">page3</a>
   </nav>
-  
 
+  <dt-form>
+    {
+        "_id" : "58b6b1b8e4cb2341d317ce42",
+        "name" : "form concept test",
+        "resourceUrl" : "https://resultsmd.io/api/customforms/58b6b1b8e4cb2341d317ce42",
+        "formUrl" : "",
+        "_creator" : "58985dc7e7b6d857d3dd3690",
+        "fields" : [
+                {
+                        "htmlType" : "textarea",
+                        "name" : "what-you-tink",
+                        "placeholder" : "your tougths...",
+                        "label" : "What do you tink about this custom form functionallity",
+                        "_id" : "58b6b1b8e4cb2341d317ce52",
+                        "options" : [ ],
+                        "isEncrypted" : false
+                },
+                {
+                        "htmlType" : "select",
+                        "name" : "understand-how-work",
+                        "placeholder" : "",
+                        "label" : "do you undestand how does it work?",
+                        "_id" : "58b6b1b8e4cb2341d317ce4d",
+                        "options" : [
+                                {
+                                        "value" : "indeed",
+                                        "name" : "indeed",
+                                        "_id" : "58b6b1b8e4cb2341d317ce51"
+                                },
+                                {
+                                        "value" : "soso",
+                                        "name" : "so so",
+                                        "_id" : "58b6b1b8e4cb2341d317ce50"
+                                },
+                                {
+                                        "value" : "got-the-idea",
+                                        "name" : "I got the idea",
+                                        "_id" : "58b6b1b8e4cb2341d317ce4f"
+                                },
+                                {
+                                        "value" : "no-at-all",
+                                        "name" : "not at all",
+                                        "_id" : "58b6b1b8e4cb2341d317ce4e"
+                                }
+                        ],
+                        "isEncrypted" : false
+                },
+                {
+                        "htmlType" : "select",
+                        "name" : "recomendation",
+                        "placeholder" : "",
+                        "label" : "will you recomend us to a friend",
+                        "_id" : "58b6b1b8e4cb2341d317ce4a",
+                        "options" : [
+                                {
+                                        "value" : "yes",
+                                        "name" : "yes",
+                                        "_id" : "58b6b1b8e4cb2341d317ce4c"
+                                },
+                                {
+                                        "value" : "no",
+                                        "name" : "no",
+                                        "_id" : "58b6b1b8e4cb2341d317ce4b"
+                                }
+                        ],
+                        "isEncrypted" : false
+                },
+                {
+                        "htmlType" : "email",
+                        "name" : "email",
+                        "placeholder" : "example@domain.com",
+                        "label" : "your email",
+                        "_id" : "58b6b1b8e4cb2341d317ce49",
+                        "options" : [ ],
+                        "isEncrypted" : false
+                },
+                {
+                        "htmlType" : "range",
+                        "name" : "rank",
+                        "placeholder" : "",
+                        "label" : "rank us...",
+                        "min" : 0,
+                        "max" : 10,
+                        "step" : 1,
+                        "_id" : "58b6b1b8e4cb2341d317ce48",
+                        "options" : [ ],
+                        "isEncrypted" : false
+                },
+                {
+                        "htmlType" : "text",
+                        "name" : "how-hear",
+                        "placeholder" : "other..",
+                        "label" : "how did you hear about us",
+                        "_id" : "58b6b1b8e4cb2341d317ce47",
+                        "options" : [ ],
+                        "isEncrypted" : false
+                },
+                {
+                        "htmlType" : "checkbox",
+                        "name" : "how-hear",
+                        "placeholder" : "",
+                        "label" : "rafio",
+                        "_id" : "58b6b1b8e4cb2341d317ce46",
+                        "options" : [ ],
+                        "isEncrypted" : false
+                },
+                {
+                        "htmlType" : "text",
+                        "name" : "how-hear",
+                        "placeholder" : "facebook",
+                        "label" : "facebook",
+                        "_id" : "58b6b1b8e4cb2341d317ce45",
+                        "options" : [ ],
+                        "isEncrypted" : false
+                },
+                {
+                        "htmlType" : "text",
+                        "name" : "how-hear",
+                        "placeholder" : "instagram",
+                        "label" : "instagram",
+                        "_id" : "58b6b1b8e4cb2341d317ce44",
+                        "options" : [ ],
+                        "isEncrypted" : false
+                },
+                {
+                        "htmlType" : "textarea",
+                        "name" : "feedback",
+                        "placeholder" : "write your tougths",
+                        "label" : "any feedback",
+                        "_id" : "58b6b1b8e4cb2341d317ce43",
+                        "options" : [ ],
+                        "isEncrypted" : false
+                }
+        ],
+        "_organizations" : [
+                "58985dc8e7b6d857d3dd3692",
+                "58985e7b7813a75831ed065a"
+        ],
+        "dateOfCreation" : "2017-03-01T11:25:53.545Z",
+        "__v" : 0
+    }
+  </dt-form>
+
+
+  <!--<dt-form>
+    { "_id": "58991f507813a75831ed0767", "name": "Barcelona test", "resourceUrl": "https://resultsmd.io/api/customforms/58991f507813a75831ed0767",
+    "formUrl": "", "_creator": "58985dc7e7b6d857d3dd3690", "fields": [{ "htmlType": "number", "name": "", "placeholder":
+    "", "label": "test field", "_id": "58991f507813a75831ed0769", "options": [] }, { "htmlType": "text", "name": "", "placeholder":
+    "", "_id": "58991f507813a75831ed0768", "options": [] }], "_organizations": [ "58985e7b7813a75831ed065a", "589871b77813a75831ed06d7",
+    "589872127813a75831ed06eb" ], "dateOfCreation": "2017-02-06T11:29:08.936Z", "__v": 0 }
+  </dt-form>-->
   <!-- dt-router read the url and show the correspondent section -->
   <dt-router>
     <section data-path="home">
@@ -33,7 +184,9 @@
       <h1>Users</h1>
       <button>create users</button>
       <ol>
-        <li><dt-user-item data-id="" data-name="Diego Torres" data-email="diegotorres0303@gmail.com"></dt-user-item></li>
+        <li>
+          <dt-user-item data-id="" data-name="Diego Torres" data-email="diegotorres0303@gmail.com"></dt-user-item>
+        </li>
       </ol>
     </section>
     <section data-path="accounts">
@@ -43,14 +196,11 @@
       <h1>Page 3</h1>
     </section>
   </dt-router>
-
-
-  <dt-notification></dt-notification>
-
+  <!--<dt-notification></dt-notification>-->
   <script src="index.js"></script>
   <script src="sandbox/revocable-sandbox.factory.js"></script>
   <script>
-    </script>
+  </script>
 </body>
 
 </html>

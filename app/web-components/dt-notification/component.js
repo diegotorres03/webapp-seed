@@ -12,7 +12,7 @@
    * HTML element to handle connections to opentok video plataform
    * the element requires the data attributes data-channel-in and data-channel-name
    */
-  class Channel extends HTMLElement {
+  class Notifier extends HTMLElement {
 
     /**
      * Called when the element is created or upgraded
@@ -32,15 +32,16 @@
     init() {
       console.log(`${componentName} #${idNum} created`)
       idNum++
-      if (window.Notification) {
 
+      if (window.Notification) {
         if (Notification.permission === 'granted') {
           new Notification('you have permission to notify')
           canNotify = true
         } else if(Notification.permission === 'default') {
           Notification.requestPermission().then(console.log)
         } else if(Notification.permission === 'denied') {
-          alert('you don\'t have permission to notify')
+          // alert('you don\'t have permission to notify')
+          Notification.requestPermission().then(console.log)
         }
       } else {
         canNotify = false
@@ -68,11 +69,12 @@
     addComponentContent() {
       // self.querySelector(``)
       // TODO: check if is already added and prevent duplication
-      const htmlImport = document.querySelector(`#${componentName}-import`).import
-      let tmpl = htmlImport.querySelector(`#${componentName}-template`)
-      let element = document.importNode(tmpl.content, true)
-      self.appendChild(element)
-      console.log(`${componentName} added to the DOM`)
+      // const htmlImport = document.querySelector(`#${componentName}-import`).import
+      // const htmlImport = document.currentScript.ownerDocument; // importee
+      // let tmpl = htmlImport.querySelector(`#${componentName}-template`)
+      // let element = document.importNode(tmpl.content, true)
+      // self.appendChild(element)
+      // console.log(`${componentName} added to the DOM`)
     }
     /**
      * any method
@@ -113,12 +115,32 @@
 
   if (window.customElements) {
     console.log(`using customElements`)
-    window.customElements.define(componentName, Channel)
+    window.customElements.define(componentName, Notifier)
   } else {
     console.log(`using registerElement`)
-    document.registerElement(componentName, Channel)
+    document.registerElement(componentName, Notifier)
   }
 
 
 
 })()
+
+
+// var importDoc = document.currentScript.ownerDocument; // importee
+
+//     // Define and register <shadow-element>
+//     // that uses Shadow DOM and a template.
+//     var proto2 = Object.create(HTMLElement.prototype);
+
+//     proto2.createdCallback = function() {
+//       // get template in import
+//       var template = importDoc.querySelector('#t');
+
+//       // import template into
+//       var clone = document.importNode(template.content, true);
+
+//       var root = this.createShadowRoot();
+//       root.appendChild(clone);
+//     };
+
+//     document.registerElement('shadow-element', {prototype: proto2});

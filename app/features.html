@@ -47,6 +47,9 @@
     isDetected = ('createShadowRoot' in document.body)? true : false
     add('document.body.createShadowRoot', isDetected)
 
+    isDetected = ('Navigator' in widow)? true : false
+    add('Navigator', isDetected)
+
     // isDetected = ('import' in document)? true : false
     // add('import', isDetected)
 

@@ -86,7 +86,7 @@ const app = (function () {
    */
   function setSandbox(sandboxFactoryReference) {
     if (!sandboxFactory) {
-      console.info(`setting sandboxFactory`)
+      // console.info(`setting sandboxFactory`)
       sandboxFactory = sandboxFactoryReference
       return true
     }
@@ -104,7 +104,7 @@ const app = (function () {
    */
   function setRevocableSandbox(revocableSandboxFactoryReference) {
     if (!revocableSandboxFactory) {
-      console.info(`setting revocableSandboxFactory`)
+      // console.info(`setting revocableSandboxFactory`)
       revocableSandboxFactory = revocableSandboxFactoryReference
       return true
     }
@@ -118,7 +118,7 @@ const app = (function () {
    */
   function initModule(moduleName) {
     if (moduleList.has(moduleName)) {
-      console.info(`initializing ${moduleName}`)
+      // console.info(`initializing ${moduleName}`)
       let revocableSandbox = revocableSandboxFactory(sandbox)
       let moduleiInstance = moduleList.get(moduleName)
       sandboxList.set(moduleName, revocableSandbox)
@@ -136,9 +136,9 @@ const app = (function () {
    * Init all the modules in the moduleList
    */
   function initAllModules() {
-    console.log(moduleList)
+    // console.log(moduleList)
     moduleList.forEach((moduleInstance, moduleName) => {
-      console.info(`initializing ${moduleName}!`)
+      // console.info(`initializing ${moduleName}!`)
       initModule(moduleName)
     })
     // moduleList.keys(moduleName => {
@@ -166,7 +166,7 @@ const app = (function () {
    */
   function stopAllModules() {
     moduleList.keys(moduleName => {
-      console.info(`stoping ${moduleName}!`)
+      // console.info(`stoping ${moduleName}!`)
       stopModule(moduleName)
     })
   }
