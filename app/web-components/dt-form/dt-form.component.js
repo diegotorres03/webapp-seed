@@ -1,10 +1,9 @@
-(function () {
+(function ( ) {
 
   'use strict'
 
   let idNum = 0
   let componentName = 'dt-form'
-
 
   /**
    * HTML element to handle connections to opentok video plataform
@@ -49,26 +48,14 @@
      * If the content is already inside it won't be added again.
      */
     addComponentContent() {
-      let content
-      const importDoc = document.currentScript.ownerDocument; // importee
-      console.log(importDoc)
-      this.template = importDoc.querySelector('template')
+      // this without polyfill
+      // const importDoc = document.currentScript.ownerDocument; // importee
+
+      console.log(this.getAttribute('src'))
+      const importDoc = document._currentScript.ownerDocument; // importee
+      this.template = importDoc.querySelector('template').cloneNode(true)
       console.log(this.template)
-      try {
-        // content = JSON.parse(this.textContent)
-        content = this.textContent
-        this.formTemplate = JSON.parse(content)
-        console.log(this.formTemplate)
-        // this.fomtTemplate = JSON.parse(this.formTemplate)
-        // console.log(JSON.parse(content))
-      } catch (err) {
-        console.warn(err.message)
-        content = {}
-        this.formTemplate = {}
-      }
-      this.textContent = ''
-      this.createForm()
-      this.appendChild(this.template.content)
+      this.getTemplate()
 
     }
 
@@ -101,13 +88,40 @@
       console.log(`adoptedCallback ${oldDocument} ${newDocument}`)
     }
 
+    getTemplate() {
+      const src = this.getAttribute('src')
+      return new Promise((resolve, reject) => {
 
-    createForm() {
+        console.log(src)
+        if (!src) {
+          try {
+            console.log(this.textContent)
+            this.formTemplate = JSON.parse(this.textContent)
+            console.log(this.formTemplate)
+            this.textContent = ''
+            resolve()
+          } catch (err) {
+            this.formTemplate = {}
+            reject(err)
+          }
+        } else {
+          // this.formTemplate
+          fetch(src)
+            .then(response => response.json())
+            .then(data => this.createForm(data))
+            .catch(reject)
+        }
+      })
+    }
+
+    createForm(data) {
+      this.formTemplate = data
       const formTitle = document.createElement('h4')
       formTitle.textContent = this.formTemplate.name
       this.appendChild(formTitle)
       const fields = document.createElement('ol')
-      console.log(fields)
+      // console.log(fields)
+      this.inputs = []
       this.formTemplate.fields.forEach(field => {
         const label = document.createElement('label')
         const li = document.createElement('li')
@@ -116,14 +130,12 @@
         fields.appendChild(li)
         // let input
         const input = this.createInput(field)
-        console.log(input)
+        this.inputs.push(input)
+        // console.log(input)
         li.appendChild(input)
-
-        // input = document.createElement('')
       })
-      console.log(this.children)
       this.appendChild(fields)
-      // section.appendChild(fields)
+      this.appendForm()
     }
 
     createInput(field) {
@@ -147,8 +159,10 @@
         case 'checkbox':
           input = document.createElement('input')
           input.type = field.htmlType
+          input.placeholder = field.placeholder
           break
       }
+      input.name = field.name
       return input
     }
 
@@ -159,6 +173,55 @@
         option.value = opt.value
         select.appendChild(option)
       })
+    }
+
+    appendForm() {
+      this.appendChild(this.template.content)
+      this.saveBtn = this.querySelector('#save-form')
+      // console.log(this)
+      console.log(this.saveBtn)
+      this.saveBtn.addEventListener('click', event => {
+        event.preventDefault()
+        console.log(this.getAttribute('action'))
+        const fields = {}
+        this.inputs.forEach(input => {
+          fields[input.name] = input.value
+          // console.log(input.name)
+          // console.log(input.value)
+        })
+        const data = {
+          fields,
+          name: this.formTemplate.name,
+          _template: this.formTemplate._id,
+          _user: 'guest'
+        }
+        this.send(data)
+      })
+    }
+
+    send(data) {
+      console.log(data)
+      const headers = new Headers()
+      headers.append('Content-Type', 'application/json')
+      // const request = new Request(this.getAttribute('action'), {
+      //   headers: {
+      //     Accept: 'application/json',
+      //     'Content-Type': 'application/json'
+      //   },
+      //   method: 'POST',
+      //   body: data,
+      //   mode: 'cors'
+      // })
+      // fetch(request, {
+      fetch(this.getAttribute('action'), {
+          headers,
+          method: 'POST',
+          body: JSON.stringify(data),
+          mode: 'cors'
+        })
+        .then(console.log)
+        .catch(console.error)
+
     }
 
   } // EoC
@@ -174,23 +237,3 @@
 
 
 })()
-
-
-// var importDoc = document.currentScript.ownerDocument; // importee
-
-//     // Define and register <shadow-element>
-//     // that uses Shadow DOM and a template.
-//     var proto2 = Object.create(HTMLElement.prototype);
-
-//     proto2.createdCallback = function() {
-//       // get template in import
-//       var template = importDoc.querySelector('#t');
-
-//       // import template into
-//       var clone = document.importNode(template.content, true);
-
-//       var root = this.createShadowRoot();
-//       root.appendChild(clone);
-//     };
-
-//     document.registerElement('shadow-element', {prototype: proto2});

@@ -1,0 +1,103 @@
+
+{
+  "_id": "58b6b6d105ca7e44626f8f71",
+  "_user": "123123",
+  "_template": "58b6b1b8e4cb2341d317ce42",
+  "name": "form concept test",
+  "fields": {
+    "feedback": "",
+    "how-hear": ["", "", "", ""],
+    "rank": "100",
+    "email": "diegotorres0303@gmail.com",
+    "recomendation": "yes",
+    "understand-how-work": "indeed",
+    "what-you-tink": "i love it"
+  },
+  "dateTime": "2017-03-01T11:42:39.512Z",
+  "__v": 0
+}
+
+        "id": { "S": "$object.get('_id')" },
+
+#set($object = $input.path('$'))
+{
+    "TableName": "formResults",
+    "Item": {
+        "id": { "S": "$context.requestId" },
+        "templateId": { "S": "$object.get('_template')" },
+        "userId": { "S": #if($object.get('_user') == '')" "#else"$object.get('_user')"#end },
+        "name": { "S": "$object.name" },
+        "fields":{
+          "M": {
+            #foreach($key in $object.fields.keySet())
+            "$key": 
+              #if($object.fields.get($key).size() > 0)
+              { "L": [
+                #foreach($item in $object.fields.get($key))
+                { "S": "$item" }#if($foreach.hasNext),#end
+                #end
+              ] }#if($foreach.hasNext),#end
+              #else
+              { "S": "$object.fields.get($key)" }#if($foreach.hasNext),#end
+              #end
+            #end
+          }
+        }
+    }
+}
+
+
+
+
+
+#set($inputRoot = $input.path('$'))
+[
+#foreach($elem in $inputRoot.Items)
+    {
+    #foreach($key in $elem.keySet())
+    "$key": 
+      #if($key == 'fields')
+      {
+        #foreach($subKey in $elem.get($key).M.keySet())
+        "$subKey": "$elem.get($key).M.get($subKey).S"#if($foreach.hasNext),#end
+        #end
+      }#if($foreach.hasNext),#end
+      #else
+      "$elem.get($key).S"#if($foreach.hasNext),#end
+      #end
+    #end
+    }#if($foreach.hasNext),#end
+#end
+]
+
+
+POST// save result
+
+#set($object = $input.path('$'))
+{
+    "TableName": "formResults",
+    "Item": {
+        "id": { "S": "$context.requestId" },
+        "templateId": { "S": #if($object.get('_template') == '')" "#else"$object.get('_template')"#end },
+        "userId": { "S": #if($object.get('_user') == '')" "#else"$object.get('_user')"#end },
+        "name": { "S": #if($object.name == '')" "#else"$object.name"#end },
+        "fields":{
+          "M": {
+            #foreach($key in $object.fields.keySet())
+            "$key": 
+              #if($object.fields.get($key).size() > 0)
+              { "L": [
+                #foreach($item in $object.fields.get($key))
+                { "S": #if($item =='')" "#else"$item"#end }#if($foreach.hasNext),#end
+                #end
+              ] }#if($foreach.hasNext),#end
+              #else
+              { "S": 
+                #if($object.fields.get($key)=='')" " #else"$object.fields.get($key)"#end } #if($foreach.hasNext),#end
+              #end
+            #end
+          }
+        }
+    }
+}
+

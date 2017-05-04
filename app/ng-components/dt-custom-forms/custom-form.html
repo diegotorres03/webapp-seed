@@ -1,0 +1,82 @@
+<section>
+  <div class="box">
+    <!--{{$ctrl.form}}-->
+    <b>formId: </b><span>{{$ctrl.form._id}}</span>
+    <br>
+    <b>form link:</b>
+    <a ng-href="https://resultsmd.io/api/formview/{{$ctrl.form._id}}">https://resultsmd.io/api/forms/{{$ctrl.form._id}}</a>
+    <br>
+    <strong translate>organizationGroup</strong>
+    <ul>
+      <li ng-repeat="org in $ctrl.form._organizations">{{org.name}}</li>
+    </ul>
+    <h2>{{$ctrl.form.name}}</h2>
+    <ul>
+      <li ng-repeat="field in $ctrl.form.fields">
+        <ul>
+          <li><strong>is encrypted:</strong> {{field.isEncrypted}}</li>
+          <li><strong>field name:</strong> {{field.name}}</li>
+          <li><strong>field type:</strong> {{field.htmlType}}</li>
+          <li><strong>field label:</strong> {{field.label}}</li>
+          <li><strong>field placeholder:</strong> {{field.placeholder}}</li>
+          <li ng-if="field.value"><strong>field default value:</strong> {{field.value}}</li>
+          <li ng-if="field.min"><strong>field min:</strong> {{field.min}}</li>
+          <li ng-if="field.max"><strong>field max:</strong> {{field.max}}</li>
+          <li ng-if="field.step"><strong>field step:</strong> {{field.step}}</li>
+          <li ng-if="field.options">
+            <ol>
+              <li ng-repeat="option in field.options">
+                <strong>option name:</strong> {{option.name}}
+                <br>
+                <strong>option value:</strong> {{option.value}}
+              </li>
+            </ol>
+          </li>
+          <hr>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <!--{{$ctrl.form}}-->
+</section>
+<!--
+{
+	_creator: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	},
+  dateOfCreation: {
+    type: Date,
+    default: new Date()
+  },
+  _organizations: [{
+    type: Schema.Types.ObjectId,
+    ref: 'organizationGroup'
+  }],
+  fields: [{
+    htmlType: {
+      type: String
+    },
+    name: {
+      type: String
+    },
+    placeholder: {
+      type: String
+    },
+    label: {
+      type: String
+    },
+    min: {
+      type: Number
+    },
+    max: {
+      type: Number
+    },
+    step: {
+      type: Number
+    }
+  }],
+  resourceUrl: {
+    type: String
+  }
+}-->

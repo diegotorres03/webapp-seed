@@ -1,0 +1,48 @@
+[
+  {
+    "userId": "guest",
+    "name": "gastos",
+    "templateId": "399d5d50-1299-11e7-a059-9bdacf701a34",
+    "fields": {
+      "fecha": "2017-03-27",
+      "amount": "2000",
+      "notes": " ",
+      "description": "Juan Valdez",
+      "account": "bancolombia/debit",
+      "direction": "on",
+      "tags": "relax"
+    }
+  },
+  {
+    "userId": "guest",
+    "name": "gastos",
+    "templateId": "399d5d50-1299-11e7-a059-9bdacf701a34",
+    "fields": {
+      "fecha": "2017-03-27",
+      "amount": "15000",
+      "notes": " ",
+      "description": "Juan Valdez",
+      "account": "bancolombia/debit",
+      "direction": "out",
+      "tags": "coffee, Juan Valdez"
+    }
+  }
+]
+
+{
+  "datasets": [{
+    "data": [3, 6, 4],
+    "label": "dataset 1",
+    "backgroundColor": ["rgba(255, 99, 132, 0.2)"],
+    "borderColor": ["rgba(255,99,132,1)"]
+  }, {
+    "data": [4, 5, 4],
+    "label": "dataset 2"
+  }, {
+    "data": [4, 3, 7],
+    "label": "dataset 2"
+  }],
+  "labels": ["one", "two",
+    "tree"
+  ]
+}

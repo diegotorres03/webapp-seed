@@ -45,6 +45,7 @@ const app = (function () {
    */
   function init() {
     sandbox = sandboxFactory()
+    // register('sandbox', sandbox)
     if(sandbox) {
       initAllModules()
       return true

@@ -1,0 +1,32 @@
+<!DOCTYPE>
+<html>
+
+<head></head>
+
+<body>
+  <h1>GRAPH</h1>
+  <!--<script src="graph.class.js"></script>-->
+  <!--<script src="graph.js"></script>-->
+  <script src="node.js"></script>
+  <script src="relation.js"></script>
+  <script src="graph.dt.js"></script>
+  <script>
+    const gp = Graph()
+
+    const n1 = Node()
+    const n2 = Node()
+    const n3 = Node()
+    const n4 = Node()
+
+    gp.addNode(n1)
+    gp.addNode(n2)
+    gp.addNode(n3)
+    gp.addNode(n4)
+
+    n1.to(n2).to(n3).to(n4).from(n1).between(n3)
+
+    console.log(gp)
+  </script>
+</body>
+
+</html>

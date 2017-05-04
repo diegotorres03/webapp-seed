@@ -1,0 +1,66 @@
+<section>
+  <div class="box">
+    <!--{{$ctrl.newForm}}-->
+    <form ng-if="$ctrl.isNew">
+      <input type="text" ng-model="$ctrl.newForm.name" placeholder="Form Name">
+      <ul>
+        <li ng-repeat="_organization in $ctrl.newForm._organizations track by _organization._id">
+          <b>{{_organization.name}}</b>
+          <button class="btn btn-primary" ng-click="$ctrl.removeOrganization(_organization)"
+            translate>removeOrganization</button>
+        </li>
+      </ul>
+      <dt-organization-group-select data="$ctrl.tempOrganization"></dt-organization-group-select>
+      <button class="btn btn-primary" ng-click="$ctrl.addOrganization($ctrl.tempOrganization)" translate>addOrganization</button>
+      <hr>
+      <ul>
+        <li ng-repeat="field in $ctrl.newForm.fields">
+          <input type="checkbox" ng-model="field.isEncrypted">
+          <label >Encrypt te field</label><br>
+          <select ng-model="field.htmlType">
+            <option ng-repeat="type in $ctrl.htmlTypes" translate>{{type}}</option>
+          </select>
+          <input type="text" ng-model="field.label" placeholder="input description">
+          <input type="text" ng-model="field.name" placeholder="input name">
+          <input ng-if="field.htmlType !== 'checkbox' && field.htmlType !== 'radio' && field.htmlType !== 'select'" type="text" ng-model="field.placeholder"
+            placeholder="input placeholder">
+            <!--<input ng-if="field.htmlType !== 'checkbox' && field.htmlType !== 'radio'" type="text" ng-model="field.placeholder" placeholder="input placeholder">-->
+            <div ng-if="field.htmlType === 'number' || field.htmlType === 'range'">
+              <br>
+              <input type="number" ng-model="field.min" placeholder="input minimum value">
+              <input type="number" ng-model="field.max" placeholder="input maximun value">
+              <input type="number" ng-model="field.step" placeholder="input step between values">
+            </div>
+            <input ng-if="field.htmlType === 'checkbox' || field.htmlType === 'radio'" type="text" ng-model="field.value" placeholder="input default value">
+            <div ng-if="field.htmlType === 'select'" ng-init="field.options = []">
+              <ol>
+                <li ng-repeat="option in field.options">
+                  <label>optionName: </label>
+                  <input type="text" placeholder="the name of this option" ng-model="option.name">
+                  <label>value: </label>
+                  <input type="text" placeholder="the value of this option" ng-model="option.value">
+                  <button class="btn btn-primary" ng-click="$ctrl.removeOption(field.options, option)">removeValue</button>                  {{option}}
+                </li>
+              </ol>
+              <button class="btn btn-primary" ng-click="field.options.push({value: '', name: ''})">addValue</button>
+            </div>
+            <button class="btn btn-primary" ng-click="$ctrl.removeField(field)">removeField</button>
+            <hr>
+        </li>
+      </ul>
+      <button class="btn btn-primary" ng-click="$ctrl.addField()">addField</button>
+      <hr>
+    </form>
+    <br>
+    <button class="btn btn-primary" ng-if="!$ctrl.isNew" ng-click="$ctrl.isNew = true">new form</button>
+    <button class="btn btn-primary" ng-if="$ctrl.isNew" ng-click="$ctrl.save()">save</button>
+    <button class="btn btn-primary" ng-if="$ctrl.isNew" ng-click="$ctrl.cancel()">cancel</button>
+  </div>
+  <hr>
+  <!--<div class="box">
+		<h1>Forms list</h1>
+		<ol>
+			<li></li>
+		</ol>
+	</div>-->
+</section>

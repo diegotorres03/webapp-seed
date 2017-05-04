@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "webcomponentsjs": "^0.7.23"
+    "webcomponentsjs": "^0.7.23",
+    "chart.js": "^2.5.0"
   }
 }

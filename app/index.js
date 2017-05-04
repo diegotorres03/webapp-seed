@@ -1,3 +1,4 @@
+/* global app */
 (function(app){
   'use strict'
   window.addEventListener('WebComponentsReady', function (event) {

@@ -1,0 +1,50 @@
+
+// POST /template
+
+#set($object = $input.path('$'))
+{
+    "TableName": "formTemplates",
+    "Item": {
+        "id": { "S": "$context.requestId" },
+        "name": { "S": "$object.name" },
+        "creatorId": { "S": #if($object.get('_creator')=='')" "#else"$object.get('_creator')"#end },
+        "resourceUrl": { "S": #if($object.resourceUrl == '')" "#else "$object.resourceUrl" #end},
+        "formUrl": { "S": #if($object.formUrl == '')" "#else "$object.formUrl" #end},
+        "organizations": {
+            "L": [
+                #foreach($org in $object.get('_organizations'))
+                {"S": "$org" }#if($foreach.hasNext),#end
+                #end
+            ]
+        },
+        "fields": {
+            "L": [
+                #foreach($field in $object.get('fields'))
+                { 
+                    "M": {
+                        "htmlType": { "S": #if($field.htmlType == '')" "#else "$field.htmlType" #end},
+                        "name": { "S": #if($field.name == '')" "#else "$field.name" #end},
+                        "label": { "S": #if($field.label == '')" "#else "$field.label" #end},
+                        "placeholder": { "S": #if($field.placeholder == '')" "#else "$field.placeholder" #end},
+                        "min": { "N": #if($field.min == '')"0"#else "$field.min" #end},
+                        "max": { "N": #if($field.max == '')"0"#else "$field.max" #end},
+                        "step": { "N": #if($field.step == '')"0"#else "$field.step" #end},
+                        "options": { 
+                            "L": [
+                                #foreach($option in $field.options)
+                                {
+                                    "M": {
+                                        "name": { "S": #if($option.name == '')" "#else "$option.name" #end},
+                                        "value": { "S": #if($option.value == '')" "#else "$option.value" #end}
+                                    }
+                                }#if($foreach.hasNext),#end
+                                #end
+                            ]
+                         }
+                    }
+                }#if($foreach.hasNext),#end
+                #end
+            ]
+        }
+    }
+}

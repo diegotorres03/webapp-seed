@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="dt-chart.component.css">
+</head>
+<template>
+  <select >
+    <option value="bar">Bar</option>
+    <option value="line">Line</option>
+    <option value="radar">Radar</option>
+    <option value="polarArea">Polar Area</option>
+    <option value="pie">Pie</option>
+    <option value="doughnut">Doughnut</option>
+    <option value="bubble">Bubble</option>
+  </select>
+  <select id="dataset-names-x">
+  </select>
+  <select id="dataset-names-y">
+  </select>
+  <select id="dataset-names-z">
+  </select>
+  <canvas class="dt-chart-canvass" width="600" height="400"></canvas>
+  <h1>DT-CHART</h1>
+  <style>
+    .dt-chart-canvas {
+      width: 600px;
+      max-width: 600px;
+      height: 300px;
+      max-height: 400px;
+    }
+  </style>
+</template>
+
+<body>
+  <script src="dt-chart.component.js">
+  </script>
+</body>
+
+</html>

@@ -4,11 +4,17 @@
 <head>
   <title></title>
   <script src="app.js"></script>
+  <link rel="stylesheet" href="index.css">
   <script src="sandbox/sandbox.factory.js"></script>
+  <script src="../bower_components/chart.js/dist/Chart.min.js " async></script>
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="web-components/dt-form/dt-form.component.html" />
+  <!--<link rel="import" href="http://easyarchery.net/web-components/dt-form/dt-form.component.html" />-->
+  <!--<link rel="import" href="web-components/dt-form/dt-form.component.html" />-->
   <link id="dt-router-import" rel="import" href="web-components/dt-router/component.html" />
-  <link id="dt-router-import" rel="import" href="web-components/dt-for-of/component.html" />
+  <link rel="import" href="web-components/dt-for-of/component.html" />
+  <link id="dt-tabs-import" rel="import" href="web-components/dt-tabs/dt-tabs.component.html" />
+  <!--<link rel="import" href="http://easyarchery.net/web-components/dt-chart/dt-chart.component.html" />-->
+  <link id="dt-chart-import" rel="import" href="web-components/dt-chart/dt-chart.component.html" />
   <link id="dt-notification-import" rel="import" href="web-components/dt-notification/component.html" />
   <link rel="import" href="web-components/dt-app-menu/app-menu.component.html" />
   <link rel="import" href="modules/users/web-components/dt-user-item/component.html" />
@@ -18,176 +24,84 @@
   <!--<dt-app-menu></dt-app-menu>-->
   <!-- display the dt-view according to the path ex #home -->
   <nav>
-    <a href="#/home">home</a>
-    <a href="#/users">users</a>
+    <a href="#/dt-tabs">dt-tabs</a>
+    <a href="#/dt-form">dt-forms</a>
+    <a href="#/chart">dt-chart</a>
     <a href="#/accounts">accounts</a>
     <a href="#/page3">page3</a>
   </nav>
-
-  <dt-form>
-    {
-        "_id" : "58b6b1b8e4cb2341d317ce42",
-        "name" : "form concept test",
-        "resourceUrl" : "https://resultsmd.io/api/customforms/58b6b1b8e4cb2341d317ce42",
-        "formUrl" : "",
-        "_creator" : "58985dc7e7b6d857d3dd3690",
-        "fields" : [
-                {
-                        "htmlType" : "textarea",
-                        "name" : "what-you-tink",
-                        "placeholder" : "your tougths...",
-                        "label" : "What do you tink about this custom form functionallity",
-                        "_id" : "58b6b1b8e4cb2341d317ce52",
-                        "options" : [ ],
-                        "isEncrypted" : false
-                },
-                {
-                        "htmlType" : "select",
-                        "name" : "understand-how-work",
-                        "placeholder" : "",
-                        "label" : "do you undestand how does it work?",
-                        "_id" : "58b6b1b8e4cb2341d317ce4d",
-                        "options" : [
-                                {
-                                        "value" : "indeed",
-                                        "name" : "indeed",
-                                        "_id" : "58b6b1b8e4cb2341d317ce51"
-                                },
-                                {
-                                        "value" : "soso",
-                                        "name" : "so so",
-                                        "_id" : "58b6b1b8e4cb2341d317ce50"
-                                },
-                                {
-                                        "value" : "got-the-idea",
-                                        "name" : "I got the idea",
-                                        "_id" : "58b6b1b8e4cb2341d317ce4f"
-                                },
-                                {
-                                        "value" : "no-at-all",
-                                        "name" : "not at all",
-                                        "_id" : "58b6b1b8e4cb2341d317ce4e"
-                                }
-                        ],
-                        "isEncrypted" : false
-                },
-                {
-                        "htmlType" : "select",
-                        "name" : "recomendation",
-                        "placeholder" : "",
-                        "label" : "will you recomend us to a friend",
-                        "_id" : "58b6b1b8e4cb2341d317ce4a",
-                        "options" : [
-                                {
-                                        "value" : "yes",
-                                        "name" : "yes",
-                                        "_id" : "58b6b1b8e4cb2341d317ce4c"
-                                },
-                                {
-                                        "value" : "no",
-                                        "name" : "no",
-                                        "_id" : "58b6b1b8e4cb2341d317ce4b"
-                                }
-                        ],
-                        "isEncrypted" : false
-                },
-                {
-                        "htmlType" : "email",
-                        "name" : "email",
-                        "placeholder" : "example@domain.com",
-                        "label" : "your email",
-                        "_id" : "58b6b1b8e4cb2341d317ce49",
-                        "options" : [ ],
-                        "isEncrypted" : false
-                },
-                {
-                        "htmlType" : "range",
-                        "name" : "rank",
-                        "placeholder" : "",
-                        "label" : "rank us...",
-                        "min" : 0,
-                        "max" : 10,
-                        "step" : 1,
-                        "_id" : "58b6b1b8e4cb2341d317ce48",
-                        "options" : [ ],
-                        "isEncrypted" : false
-                },
-                {
-                        "htmlType" : "text",
-                        "name" : "how-hear",
-                        "placeholder" : "other..",
-                        "label" : "how did you hear about us",
-                        "_id" : "58b6b1b8e4cb2341d317ce47",
-                        "options" : [ ],
-                        "isEncrypted" : false
-                },
-                {
-                        "htmlType" : "checkbox",
-                        "name" : "how-hear",
-                        "placeholder" : "",
-                        "label" : "rafio",
-                        "_id" : "58b6b1b8e4cb2341d317ce46",
-                        "options" : [ ],
-                        "isEncrypted" : false
-                },
-                {
-                        "htmlType" : "text",
-                        "name" : "how-hear",
-                        "placeholder" : "facebook",
-                        "label" : "facebook",
-                        "_id" : "58b6b1b8e4cb2341d317ce45",
-                        "options" : [ ],
-                        "isEncrypted" : false
-                },
-                {
-                        "htmlType" : "text",
-                        "name" : "how-hear",
-                        "placeholder" : "instagram",
-                        "label" : "instagram",
-                        "_id" : "58b6b1b8e4cb2341d317ce44",
-                        "options" : [ ],
-                        "isEncrypted" : false
-                },
-                {
-                        "htmlType" : "textarea",
-                        "name" : "feedback",
-                        "placeholder" : "write your tougths",
-                        "label" : "any feedback",
-                        "_id" : "58b6b1b8e4cb2341d317ce43",
-                        "options" : [ ],
-                        "isEncrypted" : false
-                }
-        ],
-        "_organizations" : [
-                "58985dc8e7b6d857d3dd3692",
-                "58985e7b7813a75831ed065a"
-        ],
-        "dateOfCreation" : "2017-03-01T11:25:53.545Z",
-        "__v" : 0
-    }
-  </dt-form>
-
-
-  <!--<dt-form>
-    { "_id": "58991f507813a75831ed0767", "name": "Barcelona test", "resourceUrl": "https://resultsmd.io/api/customforms/58991f507813a75831ed0767",
-    "formUrl": "", "_creator": "58985dc7e7b6d857d3dd3690", "fields": [{ "htmlType": "number", "name": "", "placeholder":
-    "", "label": "test field", "_id": "58991f507813a75831ed0769", "options": [] }, { "htmlType": "text", "name": "", "placeholder":
-    "", "_id": "58991f507813a75831ed0768", "options": [] }], "_organizations": [ "58985e7b7813a75831ed065a", "589871b77813a75831ed06d7",
-    "589872127813a75831ed06eb" ], "dateOfCreation": "2017-02-06T11:29:08.936Z", "__v": 0 }
+  <!--<dt-form src="https://qifpkkyx9a.execute-api.us-west-2.amazonaws.com/dev/forms/templates/test-invoke-request" action="https://qifpkkyx9a.execute-api.us-west-2.amazonaws.com/dev/forms/save">
   </dt-form>-->
-  <!-- dt-router read the url and show the correspondent section -->
+  <!--<dt-form src="https://qifpkkyx9a.execute-api.us-west-2.amazonaws.com/dev/forms/templates/58b6b1b8e4cb2341d317ce42" action="https://qifpkkyx9a.execute-api.us-west-2.amazonaws.com/dev/forms/save">
+  </dt-form>-->
   <dt-router>
-    <section data-path="home">
-      <h1>Home</h1>
+    <section data-path="dt-form">
+      <!--<dt-form src="https://qifpkkyx9a.execute-api.us-west-2.amazonaws.com/dev/forms/templates/f4595a4b-1856-11e7-8dcd-59ace54a07b4"-->
+      <!--<dt-form src="https://qifpkkyx9a.execute-api.us-west-2.amazonaws.com/dev/forms/templates/399d5d50-1299-11e7-a059-9bdacf701a34"
+        action="https://qifpkkyx9a.execute-api.us-west-2.amazonaws.com/dev/forms/save">
+        </dt-form>-->
     </section>
-    <section data-path="users">
-      <h1>Users</h1>
-      <button>create users</button>
-      <ol>
-        <li>
-          <dt-user-item data-id="" data-name="Diego Torres" data-email="diegotorres0303@gmail.com"></dt-user-item>
-        </li>
-      </ol>
+    <!-- dt-tabs -->
+    <section data-path="dt-tabs">
+      <h1>dt-tabs</h1>
+      <nav>
+        <label for="tab-section-1" class="any-class">Go 1</label>
+        <label for="tab-section-2" class="any-class">Go 2</label>
+        <label for="tab-section-3" class="any-class">Go 3</label>
+      </nav>
+      <dt-tabs>
+        <section id="tab-section-1" class="any-other-class">
+          <h1>section 1</h1>
+          <label for="tab-section-4" class="any-class">Go 4</label>
+          <p>Curabitur gravida risus mi, faucibus posuere velit ultricies sit amet. Integer hendrerit tempor aliquet. Nunc vitae
+            tincidunt dui, a tincidunt elit. Aliquam a nisi diam. Integer volutpat gravida libero.</p>
+          <p>Etiam non lectus nulla. Mauris ultricies id tellus et lacinia. Pellentesque consequat magna a ligula congue sollicitudin
+            quis eget felis.</p>
+        </section>
+        <section id="tab-section-2" class="any-other-class">
+          <h1>section 2</h1>
+          <p>Curabitur gravida risus mi, faucibus posuere velit ultricies sit amet. Integer hendrerit tempor aliquet. Nunc vitae
+            tincidunt dui, a tincidunt elit. Aliquam a nisi diam. Integer volutpat gravida libero.</p>
+          <p>Etiam non lectus nulla. Mauris ultricies id tellus et lacinia. Pellentesque consequat magna a ligula congue sollicitudin
+            quis eget felis.</p>
+        </section>
+        <section id="tab-section-3" class="any-other-class">
+          <h1>section 3</h1>
+          <p>Curabitur gravida risus mi, faucibus posuere velit ultricies sit amet. Integer hendrerit tempor aliquet. Nunc vitae
+            tincidunt dui, a tincidunt elit. Aliquam a nisi diam. Integer volutpat gravida libero.</p>
+          <p>Etiam non lectus nulla. Mauris ultricies id tellus et lacinia. Pellentesque consequat magna a ligula congue sollicitudin
+            quis eget felis.</p>
+        </section>
+        <section id="tab-section-4" class="any-other-class">
+          <h1>Section 4</h1>
+          <nav>
+            <label for="tab-section-1">Go 1</label>
+            <label for="tab-section-2">Go 2</label>
+            <label for="tab-section-3">Go 3</label>
+          </nav>
+        </section>
+      </dt-tabs>
+    </section>
+    <!-- end dt-tabs -->
+    <section data-path="chart">
+      <h1>Chart</h1>
+      <dt-chart id="dt-chart-example">
+        { "items": [ { "userId": "guest", "name": "gastos", "templateId": "399d5d50-1299-11e7-a059-9bdacf701a34", "fields": { "fecha":
+        "2017-03-27", "amount": "2000", "notes": "10", "description": "Juan Valdez", "account": "bancolombia/debit", "direction":
+        "on", "tags": "relax" } }, { "userId": "guest", "name": "gastos", "templateId": "399d5d50-1299-11e7-a059-9bdacf701a34",
+        "fields": { "fecha": "2017-03-27", "amount": "15000", "notes": "7", "description": "Juan Valdez", "account": "bancolombia/debit",
+        "direction": "out", "tags": "coffee, Juan Valdez" } },
+        { "userId": "guest", "name": "gastos", "templateId": "399d5d50-1299-11e7-a059-9bdacf701a34", "fields": { "fecha":
+        "2017-03-27", "amount": "13000", "notes": "9", "description": "Juan Valdez", "account": "bancolombia/debit", "direction":
+        "on", "tags": "relax" } }, { "userId": "guest", "name": "gastos", "templateId": "399d5d50-1299-11e7-a059-9bdacf701a34",
+        "fields": { "fecha": "2017-03-27", "amount": "8000", "notes": "8", "description": "Juan Valdez", "account": "bancolombia/debit",
+        "direction": "out", "tags": "coffee, Juan Valdez" } } ] }
+      </dt-chart>
+      <!--<dt-chart id="dt-chart-example">
+        { "datasets": [ { "data": [3,6,4], "label": "dataset 1", "backgroundColor": ["rgba(255, 99, 132, 0.2)"], "borderColor": ["rgba(255,99,132,1)"]
+        }, { "data": [4,5,4], "label": "dataset 2" }, { "data": [4,3,7], "label": "dataset 2" } ], "labels": ["one", "two",
+        "tree"] }
+      </dt-chart>-->
     </section>
     <section data-path="accounts">
       <h1>Accounts</h1>
@@ -199,6 +113,7 @@
   <!--<dt-notification></dt-notification>-->
   <script src="index.js"></script>
   <script src="sandbox/revocable-sandbox.factory.js"></script>
+  <!--<script src="bower_components/angular/angular.min.js "></script>-->
   <script>
   </script>
 </body>

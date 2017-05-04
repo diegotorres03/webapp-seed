@@ -1,0 +1,9 @@
+<h1>custom form list</h1>
+<ul class="dt-custom-forms-list">
+  <!--{{$ctrl.storage}}
+  {{$ctrl.cstomForms}}-->
+  <!--<li ng-repeat="form in $ctrl.storage track by form._id">-->
+  <li ng-repeat="form in $ctrl.customForms track by form._id">
+    <dt-custom-form form="form"></dt-custom-form>
+  </li>
+</ul>
